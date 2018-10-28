@@ -1,0 +1,40 @@
+html {
+  font-family: PingFang_Regular, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: PingFang_Regular;
+  src: url('~/assets/font/PingFang_Regular.ttf');
+}
+
+p, div, span, h1, h2, h3, h4, h5, h6, ul, li, ol, dd, dt {
+  /*font-family: PingFang_Regular;*/
+}
+
+.page-enter-active, .page-leave-active {
+  transition: opacity .2s;
+}
+
+.page-enter, .page-leave-active {
+  opacity: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+.ivu-poptip-title-inner, .ivu-poptip-body-content-inner{
+  color: #333!important;
+}
