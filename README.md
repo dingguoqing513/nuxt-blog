@@ -1,6 +1,6 @@
 # dingguoqing
 
-> 747896298@qq.com
+> dingguoqing.cn
 
 ## Build Setup
 

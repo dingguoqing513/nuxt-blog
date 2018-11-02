@@ -12,6 +12,12 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
   },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "6666"
+    }
+  },
   "dependencies": {
     "iview": "^3.1.0",
     "nuxt": "latest"
