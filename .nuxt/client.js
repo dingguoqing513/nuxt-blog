@@ -32,6 +32,50 @@ const NUXT = window.__NUXT__ || {}
 Object.assign(Vue.config, {"silent":true,"performance":false})
 
 
+// Setup global Vue error handler
+if (!Vue.config.$nuxt) {
+  const defaultErrorHandler = Vue.config.errorHandler
+  Vue.config.errorHandler = (err, vm, info, ...rest) => {
+    const nuxtError = {
+      statusCode: err.statusCode || err.name || 'Whoops!',
+      message: err.message || err.toString()
+    }
+
+    // Call other handler if exist
+    let handled = null
+    if (typeof defaultErrorHandler === 'function') {
+      handled = defaultErrorHandler(err, vm, info, ...rest)
+    }
+    if (handled === true){
+      return handled
+    }
+
+    if (vm && vm.$root) {
+      const nuxtApp = Object.keys(Vue.config.$nuxt)
+        .find(nuxtInstance => vm.$root[nuxtInstance])
+    
+      // Show Nuxt Error Page
+      if (nuxtApp && vm.$root[nuxtApp].error && info !== 'render function') {
+        vm.$root[nuxtApp].error(nuxtError)
+      }
+    }
+
+    if (typeof defaultErrorHandler === 'function') {
+      return handled
+    }
+
+    // Log to console
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(err)
+    } else {
+      console.error(err.message || nuxtError.message)
+    }
+  }
+  Vue.config.$nuxt = {}
+}
+Vue.config.$nuxt.$nuxt = true
+
+
 
 // Create and mount App
 createApp()
@@ -483,11 +527,6 @@ async function mountApp(__app) {
   // Create Vue instance
   const _app = new Vue(app)
 
-  
-    // Load layout
-  const layout = NUXT.layout || 'default'
-  await _app.loadLayout(layout)
-  _app.setLayout(layout)
   
 
   // Mounts Vue app to DOM element

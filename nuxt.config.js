@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -17,7 +18,8 @@ module.exports = {
     '~assets/css/main.css'
   ],
   router: {
-    base: '/'
+    base: '/',
+    mode: 'hash'
   },
   plugins: [
     { src: '~plugins/filter', ssr: false },
