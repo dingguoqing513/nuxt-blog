@@ -1,4 +1,4 @@
 # dingguoqing
 
-# generate static project
+### generate static project
 $ [dingguoqing.cn](http://dingguoqing.cn]
